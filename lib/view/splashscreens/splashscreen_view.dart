@@ -1,6 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:health/utils/constants/colors.dart';
+import 'package:health/utils/enums.dart';
 import 'package:health/view/authViews/login/loginpage.dart';
 import 'package:health/view/homepage/homepage.dart';
 import 'package:health/view/splashscreens/splashscreen_view_model.dart';
@@ -13,6 +14,7 @@ class SplashscreenView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelProvider<SplashscreenViewModel>.withConsumer(
         viewModelBuilder: () => SplashscreenViewModel(),
+        onModelReady: (v) => v.isuserloggedin(),
         builder: (context, model, child) {
           return SingleChildScrollView(
             child: Container(
@@ -47,9 +49,8 @@ class SplashscreenView extends StatelessWidget {
                   splashIconSize: 200,
                   splashTransition: SplashTransition.scaleTransition,
                   nextScreen: FutureBuilder<dynamic>(
-                    future: model.isuserloggedin(),
                     builder: (context, snapshot) {
-                      if (!snapshot.hasData) {
+                      if (model.status == LoggedInStatus.loggedOut) {
                         return LogInPage();
                       } else {
                         return Homepage();

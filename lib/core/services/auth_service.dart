@@ -5,6 +5,7 @@ import 'package:health/utils/constants/helpers.dart';
 import 'package:health/utils/constants/locator.dart';
 import 'package:health/utils/dialogeManager/dialogModels.dart';
 import 'package:health/utils/dialogeManager/dialogService.dart';
+import 'package:health/utils/enums.dart';
 import 'package:health/utils/router/navigationService.dart';
 import 'package:health/utils/router/routeNames.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,6 +18,9 @@ class AuthService {
   ProgressResponse response;
   String _name;
   String get name => _name;
+
+  String _uid;
+  String get uid => _uid;
 
   String _phoneNumber;
   String get phoneNumber => _phoneNumber;
@@ -31,21 +35,20 @@ class AuthService {
   }
 
   // GET CURRENT USER
-  Future<User> getCurrentUser() async {
+  Future getCurrentUser() async {
     User user = FirebaseAuth.instance.currentUser;
-    if (user.displayName != null) {
+    if (user != null) {
       print('the user id is ${user.uid.toString()}');
-      String userIdentity = user.uid.toString();
-      String userName = user.displayName.toString();
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('userIdentity', userIdentity);
-      // prefs.setString('password', password);
-      prefs.setString('userName', userName);
       _name = user.displayName.toString();
-      return user;
+      _uid = user.uid.toString();
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('userIdentity', uid);
+      // prefs.setString('password', password);
+      prefs.setString('userName', user.displayName.toString());
+      return LoggedInStatus.loggedIn;
     } else {
       print('error');
-      return user;
+      return LoggedInStatus.loggedOut;
     }
   }
 
@@ -133,13 +136,12 @@ class AuthService {
           _progressService.dialogComplete(response);
           _firebaseAuth.authStateChanges().listen((user) async {
             if (user.displayName != null) {
-              String userIdentity = user.uid.toString();
-              String name = user.displayName.toString();
-              SharedPreferences prefs = await SharedPreferences.getInstance();
-              prefs.setString('userIdentity', userIdentity);
-              prefs.setString('password', password);
-              prefs.setString('name', name);
               _name = user.displayName.toString();
+              _uid = user.uid.toString();
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              prefs.setString('userIdentity', uid);
+              prefs.setString('password', password);
+              prefs.setString('name', user.displayName.toString());
             }
           });
           _navigationService.navigateReplacementTo(HomePageRoute);
@@ -168,14 +170,9 @@ class AuthService {
 
   // Sign Out
   signOut() async {
-    String userIdentity = '';
-    String password = '';
-    String userName = '';
+    await _firebaseAuth.signOut().then((value) => onAuthStateChanged);
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('userIdentity', userIdentity);
-    prefs.setString('password', password);
-    prefs.setString('userName', userName);
-    return _firebaseAuth.signOut();
+    prefs.clear();
   }
 
   // Reset Password

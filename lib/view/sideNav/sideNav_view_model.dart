@@ -25,8 +25,8 @@ class SideNavViewModel extends BaseModel {
     return launch("tel://+2348035853226");
   }
 
-  void signout() {
-    _authentication.signOut();
+  void signout() async {
+    await _authentication.signOut();
     _navigationService.navigateReplacementTo(SignInPageRoute);
   }
 }

@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:health/core/model/success_model.dart';
 import 'package:health/core/services/notification_service.dart';
 import 'package:health/utils/baseModel/baseModel.dart';
@@ -18,7 +17,7 @@ class FireStoreService extends BaseModel {
   final NotificationHelper _notificationHelper = locator<NotificationHelper>();
   final AuthService _authentication = locator<AuthService>();
   var uuid = Uuid();
-  var data = FirebaseAuth.instance.currentUser;
+  //var data = FirebaseAuth.instance.currentUser;
   Future<dynamic> submitBookingNC(String date, String importance,
       String purpose, NoneCritical nonCritical) async {
     print('the purpose is $purpose');
@@ -36,8 +35,8 @@ class FireStoreService extends BaseModel {
             // "doctorId": doctorId,
             "importance": importance,
             "purpose": purpose,
-            "userId": data.uid,
-            "userName": data.displayName,
+            "userId": _authentication.uid,
+            "userName": _authentication.name,
             "referenceId": referenceId,
             "bookingDate": bookingDate,
             "arrivalStatus": "pending"
@@ -70,8 +69,8 @@ class FireStoreService extends BaseModel {
             // "doctorId": doctorId,
             "importance": importance,
             "purpose": purpose,
-            "userId": data.uid,
-            "userName": data.displayName,
+            "userId": _authentication.uid,
+            "userName": _authentication.name,
             "referenceId": referenceId,
             "bookingDate": bookingDate,
             "arrivalStatus": "pending"
@@ -106,8 +105,8 @@ class FireStoreService extends BaseModel {
             // "doctorId": doctorId,
             "importance": importance,
             "purpose": purpose,
-            "userId": data.uid,
-            "userName": data.displayName,
+            "userId": _authentication.uid,
+            "userName": _authentication.name,
             "referenceId": referenceId,
             "bookingDate": bookingDate,
             "arrivalStatus": "pending"
@@ -139,8 +138,8 @@ class FireStoreService extends BaseModel {
             // "doctorId": doctorId,
             "importance": importance,
             "purpose": purpose,
-            "userId": data.uid,
-            "userName": data.displayName,
+            "userId": _authentication.uid,
+            "userName": _authentication.name,
             "referenceId": referenceId,
             "bookingDate": bookingDate,
             "arrivalStatus": "pending"
@@ -233,7 +232,7 @@ class FireStoreService extends BaseModel {
   getMyPendingNCBookings() {
     return FirebaseFirestore.instance
         .collection('nCPendingBookings')
-        .where("userId", isEqualTo: data.uid)
+        .where("userId", isEqualTo: _authentication.uid)
         .orderBy('bookingDate', descending: true)
         .snapshots();
   }
@@ -241,7 +240,7 @@ class FireStoreService extends BaseModel {
   getMySuccessNCBookings() {
     return FirebaseFirestore.instance
         .collection('nCSuccessBookings')
-        .where("userId", isEqualTo: data.uid)
+        .where("userId", isEqualTo: _authentication.uid)
         .orderBy('bookingDate', descending: true)
         .snapshots();
   }
@@ -249,7 +248,7 @@ class FireStoreService extends BaseModel {
   getMyPendingCBookings() {
     return FirebaseFirestore.instance
         .collection('cPendingBookings')
-        .where("userId", isEqualTo: data.uid)
+        .where("userId", isEqualTo: _authentication.uid)
         .orderBy('bookingDate', descending: true)
         .snapshots();
   }
@@ -257,7 +256,7 @@ class FireStoreService extends BaseModel {
   getMySuccessCBookings() {
     return FirebaseFirestore.instance
         .collection('cSuccessBookings')
-        .where("userId", isEqualTo: data.uid)
+        .where("userId", isEqualTo: _authentication.uid)
         .orderBy('bookingDate', descending: true)
         .snapshots();
   }

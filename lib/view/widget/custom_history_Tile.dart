@@ -32,7 +32,7 @@ class CustomHistoryTile extends StatelessWidget {
     } else if (arrivalStatus == 'completed') {
       arrivalC = AppColors.green;
     } else {
-      arrivalC = Colors.red;
+      arrivalC = Colors.redAccent[400];
     }
     return GestureDetector(
       onTap: () => Navigator.push(
@@ -48,7 +48,7 @@ class CustomHistoryTile extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         decoration: BoxDecoration(
-            color: AppColors.loadingColor200,
+            color: Colors.grey[50],
             borderRadius: BorderRadius.circular(10),
             boxShadow: [BoxShadow(blurRadius: 4, color: Colors.black26)]),
         child: Row(
@@ -60,7 +60,7 @@ class CustomHistoryTile extends StatelessWidget {
               children: [
                 Text(
                   'Importance- $importance',
-                  style: TextStyle(color: AppColors.white),
+                  style: TextStyle(color: AppColors.black),
                 ),
                 customYMargin(10),
                 Container(
@@ -69,7 +69,7 @@ class CustomHistoryTile extends StatelessWidget {
                     'Purpose- $purpose',
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
-                    style: TextStyle(color: AppColors.white),
+                    style: TextStyle(color: AppColors.black),
                   ),
                 ),
               ],
@@ -77,17 +77,17 @@ class CustomHistoryTile extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Icon(Icons.info_outline, color: AppColors.grey, size: 20),
+                Icon(Icons.info_outline, color: AppColors.black, size: 20),
                 Text(
                   'Scheduled Time- $scheduledTime',
-                  style: TextStyle(color: AppColors.white),
+                  style: TextStyle(color: AppColors.black),
                 ),
                 customYMargin(10),
                 Row(
                   children: [
                     Text(
                       'Arrival Status- ',
-                      style: TextStyle(color: AppColors.white),
+                      style: TextStyle(color: AppColors.black),
                     ),
                     Text(
                       arrivalStatus,
