@@ -37,7 +37,7 @@ class ResetPasswordpageState extends State<ResetPasswordpage> {
                     onPressed: () {
                       model.pop();
                     }),
-                backgroundColor: AppColors.loadingColor,
+                backgroundColor: AppColors.primaryColor,
                 title: Text(
                   'Change Password',
                   textAlign: TextAlign.center,

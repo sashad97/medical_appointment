@@ -62,13 +62,13 @@ class _LogInPageState extends State<LogInPage> {
                                       MediaQuery.of(context).size.height * 0.2,
                                   alignment: Alignment.center,
                                 ),
-                                Text('HEALTH',
+                                Text('HEALTHCARE VQMA',
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 30,
+                                        fontSize: 20,
                                         fontWeight: FontWeight.bold,
                                         wordSpacing: 5,
-                                        letterSpacing: 5),
+                                        letterSpacing: 3),
                                     textAlign: TextAlign.left),
                               ],
                             ),
@@ -85,16 +85,20 @@ class _LogInPageState extends State<LogInPage> {
                               padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
                               child: Form(
                                 key: formKey,
-                                child: ListView(
-                                    shrinkWrap: true,
-                                    scrollDirection: Axis.vertical,
+                                child: Column(
+                                    // shrinkWrap: true,
+                                    // scrollDirection: Axis.vertical,
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10.0),
-                                        child: Text('LOGIN',
-                                            style: headertextStyle,
-                                            textAlign: TextAlign.left),
+                                      customYMargin(20),
+                                      Align(
+                                        alignment: Alignment.topLeft,
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 10.0),
+                                          child: Text('LOGIN',
+                                              style: headertextStyle,
+                                              textAlign: TextAlign.left),
+                                        ),
                                       ),
                                       SizedBox(height: 5),
                                       CustomTextFormField(

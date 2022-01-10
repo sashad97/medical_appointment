@@ -49,13 +49,13 @@ class _SignUpViewState extends State<SignUpView> {
                               alignment: Alignment.center,
                             ),
                           ),
-                          Text('HEALTH',
+                          Text('HEALTHCARE VQMA',
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 30,
+                                  fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   wordSpacing: 5,
-                                  letterSpacing: 5),
+                                  letterSpacing: 3),
                               textAlign: TextAlign.left),
                           Expanded(
                             child: Container(
@@ -73,23 +73,27 @@ class _SignUpViewState extends State<SignUpView> {
                                   key: formKey,
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
-                                  child: ListView(
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.vertical,
+                                  child: Column(
+                                      // shrinkWrap: true,
+                                      // scrollDirection: Axis.vertical,
                                       children: [
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 10.0),
-                                          child: Text('SIGN UP',
-                                              style: headertextStyle,
-                                              textAlign: TextAlign.left),
+                                        customYMargin(20),
+                                        Align(
+                                          alignment: Alignment.topLeft,
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 10.0),
+                                            child: Text('SIGN UP',
+                                                style: headertextStyle,
+                                                textAlign: TextAlign.left),
+                                          ),
                                         ),
                                         SizedBox(height: 5),
                                         CustomTextFormField(
                                           hasPrefixIcon: true,
                                           prefixIcon: Icon(Icons.person,
                                               color: AppColors.grey),
-                                          label: "Name",
+                                          label: "Full Name",
                                           borderStyle: BorderStyle.solid,
                                           textInputType:
                                               TextInputType.emailAddress,
@@ -119,7 +123,7 @@ class _SignUpViewState extends State<SignUpView> {
                                         ),
                                         CustomTextFormField(
                                           hasPrefixIcon: true,
-                                          prefixIcon: Icon(Icons.mail,
+                                          prefixIcon: Icon(Icons.phone,
                                               color: AppColors.grey),
                                           label: "Phone number",
                                           borderStyle: BorderStyle.solid,
