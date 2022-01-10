@@ -29,18 +29,18 @@ class SideNavpage extends StatelessWidget {
                             Container(
                               margin: EdgeInsets.only(left: 20),
                               alignment: Alignment.center,
-                              height: 100,
-                              width: 100,
+                              height: 60,
+                              width: 60,
                               decoration: BoxDecoration(
                                   image: DecorationImage(
                                       image:
                                           AssetImage('asset/images/health.png'),
                                       fit: BoxFit.fill)),
                             ),
-                            Text('HEALTH',
+                            Text('HEALTHCARE VQMA',
                                 style: TextStyle(
-                                    fontSize: 16,
-                                    letterSpacing: 5,
+                                    fontSize: 14,
+                                    letterSpacing: 3,
                                     fontWeight: FontWeight.bold,
                                     color: AppColors.white))
                           ],

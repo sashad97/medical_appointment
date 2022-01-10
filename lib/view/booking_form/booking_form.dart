@@ -50,7 +50,7 @@ class _BookingFormState extends State<BookingForm> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: DropdownWidget(
-                      hint: 'select importance',
+                      hint: 'select priority',
                       selectedItem: model.importance,
                       items: model.impt.map((String value) {
                         return new DropdownMenuItem<String>(

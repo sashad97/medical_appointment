@@ -40,7 +40,7 @@ class _HomepageState extends State<Homepage> {
                   color: AppColors.primaryColor,
                 ),
               ),
-              title: Text('HEALTH',
+              title: Text('HEALTHCARE VQMA',
                   style: titletextStyle, textAlign: TextAlign.center),
               centerTitle: true,
               elevation: 0.9,
@@ -77,9 +77,9 @@ class _HomepageState extends State<Homepage> {
                       GestureDetector(
                         onTap: () => model.navigateToForm(),
                         child: Container(
-                          margin: EdgeInsets.only(bottom: 40),
+                          margin: EdgeInsets.only(bottom: 20),
                           width: Responsive.width(1, context),
-                          height: 100,
+                          height: Responsive.height(0.11, context),
                           decoration: BoxDecoration(
                               color: Colors.lightBlue[300],
                               borderRadius: BorderRadius.circular(10)),
@@ -87,7 +87,7 @@ class _HomepageState extends State<Homepage> {
                           child: Text(
                             'Book An Appointment',
                             style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 16,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black),
                           ),
@@ -98,7 +98,7 @@ class _HomepageState extends State<Homepage> {
                         child: Container(
                           margin: EdgeInsets.only(bottom: 40),
                           width: Responsive.width(1, context),
-                          height: 100,
+                          height: Responsive.height(0.11, context),
                           decoration: BoxDecoration(
                               color: Colors.lightBlue[300],
                               borderRadius: BorderRadius.circular(10)),
@@ -106,7 +106,7 @@ class _HomepageState extends State<Homepage> {
                           child: Text(
                             'My bookings',
                             style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 16,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black),
                           ),

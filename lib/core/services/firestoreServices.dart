@@ -33,7 +33,7 @@ class FireStoreService extends BaseModel {
             "dateTime": date,
             // "doctorName": doctorName,
             // "doctorId": doctorId,
-            "importance": importance,
+            "priority": importance,
             "purpose": purpose,
             "userId": _authentication.uid,
             "userName": _authentication.name,
@@ -67,7 +67,7 @@ class FireStoreService extends BaseModel {
             // "dateTime": date,
             // "doctorName": doctorName,
             // "doctorId": doctorId,
-            "importance": importance,
+            "priority": importance,
             "purpose": purpose,
             "userId": _authentication.uid,
             "userName": _authentication.name,
@@ -103,7 +103,7 @@ class FireStoreService extends BaseModel {
             "dateTime": date,
             // "doctorName": doctorName,
             // "doctorId": doctorId,
-            "importance": importance,
+            "priority": importance,
             "purpose": purpose,
             "userId": _authentication.uid,
             "userName": _authentication.name,
@@ -136,7 +136,7 @@ class FireStoreService extends BaseModel {
             "dateTime": date,
             // "doctorName": doctorName,
             // "doctorId": doctorId,
-            "importance": importance,
+            "priority": importance,
             "purpose": purpose,
             "userId": _authentication.uid,
             "userName": _authentication.name,
@@ -207,18 +207,24 @@ class FireStoreService extends BaseModel {
           .doc(documentId);
 
       await reference.update({"arrivalStatus": "missed"});
-      return _progressService.showDialog(
-          title: 'Ooops!',
-          description: 'Your time has ellapse. Kindly reach out to support');
+      return _progressService
+          .showDialog(
+              title: 'Ooops!',
+              description:
+                  'You are late for this appointment. Kindly contact support to be reffered to delayed point')
+          .then((value) => _navigationService.pop());
     } else {
       DocumentReference reference = FirebaseFirestore.instance
           .collection('nCSuccessBookings')
           .doc(documentId);
 
       await reference.update({"arrivalStatus": "missed"});
-      return _progressService.showDialog(
-          title: 'Ooops!',
-          description: 'Your time has ellapse. Kindly reach out to support');
+      return _progressService
+          .showDialog(
+              title: 'Ooops!',
+              description:
+                  'You are late for this appointment. Kindly contact support to be reffered to delayed point')
+          .then((value) => _navigationService.pop());
     }
   }
 

@@ -143,7 +143,7 @@ class _BookingHistoryState extends State<BookingHistory>
                                 print(data["dateTime"].toString());
                                 return new CustomHistoryTile(
                                   arrivalStatus: data["arrivalStatus"],
-                                  importance: data["importance"],
+                                  importance: data["priority"],
                                   purpose: data["purpose"],
                                   isApproved: true,
                                   docId: id,
@@ -198,7 +198,7 @@ class _BookingHistoryState extends State<BookingHistory>
                                 var id = snapshot.data.docs[i].id;
                                 return new CustomHistoryTile(
                                   arrivalStatus: data["arrivalStatus"],
-                                  importance: data["importance"],
+                                  importance: data["priority"],
                                   purpose: data["purpose"],
                                   isApproved: false,
                                   isCritical: widget.isCritical,

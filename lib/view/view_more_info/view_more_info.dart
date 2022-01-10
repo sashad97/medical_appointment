@@ -57,7 +57,7 @@ class _FullBookingDetailsState extends State<FullBookingDetails> {
                   child: Column(
                     children: [
                       customYMargin(20),
-                      container(title: "Importance", info: data["importance"]),
+                      container(title: "Priority", info: data["priority"]),
                       customYMargin(10),
                       container(title: "Purpose", info: data["purpose"]),
                       customYMargin(10),
@@ -108,7 +108,7 @@ class _FullBookingDetailsState extends State<FullBookingDetails> {
                                   context: context,
                                   isCritical: widget.isCritical,
                                   purpose: data["purpose"],
-                                  importance: data["purpose"],
+                                  importance: data["priority"],
                                   documentId: widget.docId);
                             }
                           }),

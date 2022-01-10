@@ -103,7 +103,7 @@ class BookingFormVm extends BaseModel {
           }
         } else {
           var data = await _firestoreService.getAllCBk();
-          if (data.docs.length < 5) {
+          if (data.docs.length < 10) {
             var n = data.docs.length;
             print('length is $n');
             //calculate Queue Status

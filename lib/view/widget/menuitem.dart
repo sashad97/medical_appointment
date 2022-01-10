@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:health/utils/constants/colors.dart';
+import 'package:health/utils/constants/helpers.dart';
 import 'package:health/utils/constants/screensize.dart';
 
 class MenuItem extends StatelessWidget {
@@ -30,7 +31,7 @@ class MenuItem extends StatelessWidget {
                     title,
                     style: TextStyle(
                         fontWeight: FontWeight.w300,
-                        fontSize: 17,
+                        fontSize: 15,
                         color: AppColors.white),
                   ),
                 ],
@@ -41,9 +42,6 @@ class MenuItem extends StatelessWidget {
                 thickness: 0.8,
                 indent: 10,
                 endIndent: 10,
-              ),
-              SizedBox(
-                height: Responsive.sizeboxheight(context) * 0.5,
               ),
             ],
           ),

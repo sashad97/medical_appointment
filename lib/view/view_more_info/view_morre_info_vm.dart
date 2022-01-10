@@ -72,7 +72,7 @@ class ViewMoreInfoVm extends BaseModel {
           }
         } else {
           var data = await _firestoreService.getAllCBk();
-          if (data.docs.length < 5) {
+          if (data.docs.length < 10) {
             var n = data.docs.length;
             //calculate Queue Status
             var qS = (sT2 * n * a2) + (r2 * a1);

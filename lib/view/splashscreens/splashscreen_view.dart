@@ -37,12 +37,12 @@ class SplashscreenView extends StatelessWidget {
                                 fit: BoxFit.fill)),
                       ),
                       Text(
-                        'HEALTH',
+                        'HEALTHCARE VQMA',
                         style: TextStyle(
                             color: AppColors.white,
-                            fontSize: 20,
+                            fontSize: 18,
                             fontWeight: FontWeight.bold,
-                            letterSpacing: 5),
+                            letterSpacing: 3),
                       ),
                     ],
                   ),

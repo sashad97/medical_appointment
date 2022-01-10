@@ -22,10 +22,10 @@ final appBartextStyle = TextStyle(
 );
 
 final titletextStyle = TextStyle(
-  fontSize: 20,
+  fontSize: 18,
   color: AppColors.primaryColor,
   fontWeight: FontWeight.bold,
-  letterSpacing: 5,
+  letterSpacing: 3,
   fontFamily: 'Caros',
 );
 
