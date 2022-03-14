@@ -155,7 +155,29 @@ class _BookingHistoryState extends State<BookingHistory>
                                 );
                               },
                             );
-                          } else
+                          }
+                             else if (snapshot.hasError) {
+                            print('it has error');
+                            return Center(
+                              child: Container(
+                                  alignment: Alignment.center,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        width: 200,
+                                        child: Text(
+                                          'Error fetching Data',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 18),
+                                        ),
+                                      ),
+                                    ],
+                                  )),
+                            );
+                          }
+                          
+                           else
                             return Align(
                                 alignment: Alignment.center,
                                 child: SpinKitFadingCircle(
@@ -188,7 +210,7 @@ class _BookingHistoryState extends State<BookingHistory>
                                     ],
                                   )),
                             );
-                          } else if (snapshot.hasData) {
+                          } else if (snapshot.hasData && snapshot.data.docs.isNotEmpty) {
                             print('it has data');
                             return ListView.builder(
                               itemCount: snapshot.data.docs.length,
@@ -208,7 +230,29 @@ class _BookingHistoryState extends State<BookingHistory>
                                 );
                               },
                             );
-                          } else
+                          } 
+                           else if (snapshot.hasError) {
+                            print('it has error');
+                            return Center(
+                              child: Container(
+                                  alignment: Alignment.center,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        width: 200,
+                                        child: Text(
+                                          'Error fetching Data',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 18),
+                                        ),
+                                      ),
+                                    ],
+                                  )),
+                            );
+                          }
+                          
+                          else
                             return Align(
                                 alignment: Alignment.center,
                                 child: SpinKitFadingCircle(
