@@ -3,8 +3,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:health/utils/constants/colors.dart';
 import 'package:health/utils/constants/helpers.dart';
 import 'package:health/view/widget/custom_history_Tile.dart';
-// ignore: import_of_legacy_library_into_null_safe
-import 'package:provider_architecture/_viewmodel_provider.dart';
+import 'package:provider_architecture/provider_architecture.dart';
 import 'booking_history_vm.dart';
 
 class BookingHistory extends StatefulWidget {
@@ -155,8 +154,7 @@ class _BookingHistoryState extends State<BookingHistory>
                                 );
                               },
                             );
-                          }
-                             else if (snapshot.hasError) {
+                          } else if (snapshot.hasError) {
                             print('it has error');
                             return Center(
                               child: Container(
@@ -175,9 +173,7 @@ class _BookingHistoryState extends State<BookingHistory>
                                     ],
                                   )),
                             );
-                          }
-                          
-                           else
+                          } else
                             return Align(
                                 alignment: Alignment.center,
                                 child: SpinKitFadingCircle(
@@ -210,7 +206,8 @@ class _BookingHistoryState extends State<BookingHistory>
                                     ],
                                   )),
                             );
-                          } else if (snapshot.hasData && snapshot.data.docs.isNotEmpty) {
+                          } else if (snapshot.hasData &&
+                              snapshot.data.docs.isNotEmpty) {
                             print('it has data');
                             return ListView.builder(
                               itemCount: snapshot.data.docs.length,
@@ -230,8 +227,7 @@ class _BookingHistoryState extends State<BookingHistory>
                                 );
                               },
                             );
-                          } 
-                           else if (snapshot.hasError) {
+                          } else if (snapshot.hasError) {
                             print('it has error');
                             return Center(
                               child: Container(
@@ -250,9 +246,7 @@ class _BookingHistoryState extends State<BookingHistory>
                                     ],
                                   )),
                             );
-                          }
-                          
-                          else
+                          } else
                             return Align(
                                 alignment: Alignment.center,
                                 child: SpinKitFadingCircle(
