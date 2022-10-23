@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:health/utils/constants/colors.dart';
-import 'package:health/utils/constants/helpers.dart';
-import 'package:health/utils/constants/screensize.dart';
 
-class MenuItem extends StatelessWidget {
+class MenuItemWidget extends StatelessWidget {
   final IconData icon;
   final String title;
   final void Function() onTap;
 
-  const MenuItem({Key key, this.icon, this.title, this.onTap})
+  const MenuItemWidget({Key key, this.icon, this.title, this.onTap})
       : super(key: key);
 
   @override

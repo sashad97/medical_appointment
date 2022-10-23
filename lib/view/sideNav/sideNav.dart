@@ -46,7 +46,7 @@ class SideNavpage extends StatelessWidget {
                           ],
                         ),
                         customYMargin(20),
-                        MenuItem(
+                        MenuItemWidget(
                           icon: Icons.book_online,
                           title: 'My bookings',
                           onTap: () {
@@ -55,7 +55,7 @@ class SideNavpage extends StatelessWidget {
                           },
                         ),
                         customYMargin(5),
-                        MenuItem(
+                        MenuItemWidget(
                           icon: Icons.edit,
                           title: 'Change password',
                           onTap: () {
@@ -67,7 +67,7 @@ class SideNavpage extends StatelessWidget {
                     )),
                     Column(
                       children: [
-                        MenuItem(
+                        MenuItemWidget(
                           icon: Icons.person,
                           title: 'Support',
                           onTap: () {
@@ -75,7 +75,7 @@ class SideNavpage extends StatelessWidget {
                           },
                         ),
                         customYMargin(5),
-                        MenuItem(
+                        MenuItemWidget(
                           icon: Icons.logout,
                           title: 'LogOut',
                           onTap: () {
