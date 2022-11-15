@@ -4,8 +4,9 @@ import 'dart:math';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:health/core/model/base_response.dart';
 import 'package:health/utils/constants/colors.dart';
-import 'package:health/utils/constants/locator.dart';
+import 'package:health/utils/locator.dart';
 import 'package:health/utils/dialogeManager/dialogService.dart';
 import 'package:health/utils/router/navigationService.dart';
 import 'package:health/utils/router/routeNames.dart';
@@ -20,8 +21,8 @@ class NotificationHelper {
   final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
   final String serverToken =
       'AAAAYXxLmjE:APA91bEeERbXPx1WkMw0tKYLHZ5mkx0k5eWBAeYmmscBFBrtZHzLAEKxQRrAyAzgnwUDqdJFA2mRygYRxp1NQyMSR2YtLTxvarEJrBNzwXoKcIu4Kw3GQ7fhC8qMCPc16TXqLjKQbnT3';
-  String _fcmToken;
-  String get fcmToken => _fcmToken;
+  String? _fcmToken;
+  String? get fcmToken => _fcmToken;
 
   static const AndroidNotificationChannel channel = AndroidNotificationChannel(
     'high_importance_channel', // id
@@ -39,7 +40,7 @@ class NotificationHelper {
   createChannel() async {
     await flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
+            AndroidFlutterLocalNotificationsPlugin>()!
         .createNotificationChannel(channel);
   }
 
@@ -71,11 +72,11 @@ class NotificationHelper {
         onSelectNotification: selectNotification);
   }
 
-  Future selectNotification(String message) {
+  Future selectNotification(String? message) {
     if (message != null) {
       return _navigationService.navigateReplacementTo(HomePageRoute);
     } else
-      return null;
+      throw BaseResponse(title: '', message: '');
   }
 
   // Future onDidReceiveLocalNotification(int i, String j, k, l) {
@@ -83,7 +84,7 @@ class NotificationHelper {
   // }
 
   Future<void> createSheduledAwesome(
-      {DateTime date, String title, String body}) async {
+      {DateTime? date, String? title, String? body}) async {
     var id = Random.secure().nextInt(50);
     await flutterLocalNotificationsPlugin.zonedSchedule(
         id,
@@ -103,7 +104,7 @@ class NotificationHelper {
   Future<void> onMessage(BuildContext context) async {
     // Get any messages which caused the application to open from
     // a terminated state.
-    RemoteMessage initialMessage =
+    RemoteMessage? initialMessage =
         await FirebaseMessaging.instance.getInitialMessage();
     if (initialMessage != null) {
       _handleMessage(initialMessage);
@@ -111,8 +112,8 @@ class NotificationHelper {
 
     FirebaseMessaging.onMessage.listen((message) {
       if (message.notification != null) {
-        RemoteNotification notification = message.notification;
-        AndroidNotification android = message.notification?.android;
+        RemoteNotification notification = message.notification!;
+        AndroidNotification? android = message.notification?.android;
         if (notification != null && android != null) {
           flutterLocalNotificationsPlugin.show(
               notification.hashCode,
@@ -128,9 +129,9 @@ class NotificationHelper {
                 ),
               ));
         }
-        return _progressService.showDialog(
-            title: message.notification.title,
-            description: message.notification.body);
+        _progressService.showDialog(
+            title: message.notification!.title,
+            description: message.notification!.body);
       }
     });
   }
@@ -138,7 +139,7 @@ class NotificationHelper {
   Future<void> onMessageOpenApp() async {
     // Get any messages which caused the application to open from
     // a terminated state.
-    RemoteMessage initialMessage =
+    RemoteMessage? initialMessage =
         await FirebaseMessaging.instance.getInitialMessage();
 
     // If the message also contains a data property with a "type" of "chat",
@@ -153,7 +154,7 @@ class NotificationHelper {
   }
 
   Future<void> onBackgroungMessage() async {
-    RemoteMessage initialMessage =
+    RemoteMessage? initialMessage =
         await FirebaseMessaging.instance.getInitialMessage();
 
     // If the message also contains a data property with a "type" of "chat",
@@ -168,14 +169,14 @@ class NotificationHelper {
   }
 
   Future<void> _handleMessage(RemoteMessage message) async {
-    if (message.notification.body != null) {
+    if (message.notification!.body != null) {
       _navigationService.navigateReplacementTo(HomePageRoute);
     } else
       return null;
   }
 
   sendAndRetrieveMessage(
-      {String title, String body, bool isSch, String date}) async {
+      {String? title, String? body, bool? isSch, String? date}) async {
     initialize();
     http.Response response = await http.post(
       Uri.parse('https://fcm.googleapis.com/fcm/send'),

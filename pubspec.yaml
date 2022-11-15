@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.16.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -27,31 +27,31 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  get_it: 
-  provider:
-  ars_progress_dialog: 
-  shared_preferences:
-  fluttertoast: 
-  provider_architecture: 
-  google_fonts:
-  firebase_core : 
-  firebase_auth: ^3.1.1 
-  cloud_firestore: 
-  flutter_spinkit: 
-  cupertino_icons: 
-  shimmer: 
-  animated_splash_screen: 
-  intl: 
+  animated_splash_screen:
+  another_flushbar:  
+  after_init: 
+  cloud_firestore: ^3.1.5
+  connectivity:
+  cupertino_icons:
   date_time_picker:
   date_format:
-  connectivity:
-  another_flushbar: 
+  equatable: ^2.0.5
+  firebase_core : ^1.10.6
+  firebase_auth: ^3.3.4
   firebase_messaging: 
   flutter_local_notifications:
+  fluttertoast: ^8.0.8
+  flutter_bloc: ^7.0.0
+  flutter_spinkit: ^5.1.0
+  get_it: ^7.2.0
+  google_fonts:
+  flutter_screenutil: ^5.5.2
+  intl:
+  provider: ^6.0.2
+  shared_preferences:
+  shimmer: 
   uuid:
   url_launcher:
-  after_init:
-  stacked:
   
 
 dev_dependencies:

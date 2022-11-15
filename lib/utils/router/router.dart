@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:health/utils/router/routeNames.dart';
-import 'package:health/view/authViews/SignUp/signup.dart';
-import 'package:health/view/authViews/login/loginpage.dart';
-import 'package:health/view/authViews/resetpassword/resetpassword.dart';
-import 'package:health/view/booking_form/booking_form.dart';
-import 'package:health/view/booking_history/booking_history.dart';
-import 'package:health/view/bookings/bookings.dart';
-import 'package:health/view/homepage/homepage.dart';
+import 'package:health/app/authViews/SignUp/view/signup.dart';
+import 'package:health/app/authViews/login/view/loginpage.dart';
+import 'package:health/app/authViews/resetpassword/view/resetpassword.dart';
+import 'package:health/app/booking_form/view/booking_form.dart';
+import 'package:health/app/booking_history/view/booking_history.dart';
+import 'package:health/app/bookings/bookings.dart';
+import 'package:health/app/homepage/homepage.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -67,7 +67,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
   }
 }
 
-PageRoute _getPageRoute({String routeName, @required Widget viewToShow}) {
+PageRoute _getPageRoute({String? routeName, required Widget viewToShow}) {
   return MaterialPageRoute(
       settings: RouteSettings(
         name: routeName,

@@ -1,9 +1,17 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:health/app/widget/api_loader.dart';
 import 'package:intl/intl.dart';
 import 'colors.dart';
+
+appPrint(dynamic value) {
+  if (kDebugMode) {
+    print(value);
+  }
+}
 
 customYMargin(double value) {
   return SizedBox(height: value);
@@ -25,7 +33,7 @@ showToast(String message) {
       fontSize: 16.0);
 }
 
-showFlushBar({String title = '', String message, BuildContext context}) {
+showFlushBar({String title = '', String message = '', BuildContext? context}) {
   Flushbar(
     backgroundColor: AppColors.grey_light,
     titleColor: Colors.black,
@@ -34,7 +42,7 @@ showFlushBar({String title = '', String message, BuildContext context}) {
     messageColor: Colors.black,
     message: message,
     duration: Duration(seconds: 5),
-  ).show(context);
+  ).show(context!);
 }
 
 showErrorToast(String message) {
@@ -64,6 +72,45 @@ Future<bool> checkInternet() async {
     return false;
   }
 }
+
+showLoadDialog(BuildContext context) {
+  return showDialog(
+    context: context,
+    builder: (context) => ApiLoader(),
+  );
+}
+
+// _showDialog(ProgressRequest request) {
+//   var isConfirmationDialog = request.cancelTitle!.isNotEmpty;
+//   var dialogType = request.buttonTitle!.isNotEmpty;
+
+//   if (dialogType) {
+//     showDialog(
+//       context: context,
+//       builder: (context) => AlertDialog(
+//         title: Text(request.title!),
+//         content: Text(request.description!),
+//         actions: <Widget>[
+//           if (isConfirmationDialog)
+//             TextButton(
+//               child: Text(request.cancelTitle!),
+//               onPressed: () {
+//                 _progressService
+//                     .dialogComplete(ProgressResponse(confirmed: false));
+//               },
+//             ),
+//           TextButton(
+//             child: Text(request.buttonTitle!),
+//             onPressed: () {
+//               _progressService
+//                   .dialogComplete(ProgressResponse(confirmed: true));
+//             },
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 newFormatDate(value) {
   final df = new DateFormat('YYYY-MM-DD HH:MM:SS');

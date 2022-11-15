@@ -1,11 +1,11 @@
 import 'package:flutter/widgets.dart';
-import 'package:health/utils/constants/locator.dart';
+import 'package:health/utils/locator.dart';
 import 'package:health/utils/dialogeManager/dialogModels.dart';
 import 'package:health/utils/dialogeManager/dialogService.dart';
 
 class BaseModel extends ChangeNotifier {
   final ProgressService _progressService = locator<ProgressService>();
-  ProgressResponse response;
+  late ProgressResponse response;
 
   bool _busy = false;
   bool get busy => _busy;

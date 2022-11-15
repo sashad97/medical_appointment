@@ -5,8 +5,8 @@ import 'package:health/utils/dialogeManager/dialogModels.dart';
 class ProgressService {
   GlobalKey<NavigatorState> _progressNavigationKey =
       GlobalKey<NavigatorState>();
-  Function(ProgressRequest) _showProgressListener;
-  Completer<ProgressResponse> _progressCompleter;
+  late Function(ProgressRequest) _showProgressListener;
+  late Completer<ProgressResponse> _progressCompleter;
 
   GlobalKey<NavigatorState> get progressNavigationKey => _progressNavigationKey;
 
@@ -17,39 +17,39 @@ class ProgressService {
   }
 
   /// Calls the dialog listener and returns a Future that will wait for dialogComplete.
-  Future<ProgressResponse> showDialog({
-    String title,
-    String description,
-    String buttonTitle = 'Ok',
-  }) {
+  Future<ProgressResponse> showDialog(
+      {String? title,
+      String? description,
+      String? buttonTitle = 'Ok',
+      void Function()? onPressed}) {
     _progressCompleter = Completer<ProgressResponse>();
     _showProgressListener(ProgressRequest(
-      title: title,
-      description: description,
-      buttonTitle: buttonTitle,
-    ));
+        title: title!,
+        description: description!,
+        buttonTitle: buttonTitle!,
+        onpressed: onPressed ?? () {}));
     return _progressCompleter.future;
   }
 
   /// Shows a confirmation dialog
   Future<ProgressResponse> showConfirmationDialog(
-      {String title,
-      String description,
-      String confirmationTitle = 'Ok',
-      String cancelTitle = 'Cancel'}) {
+      {String? title,
+      String? description,
+      String? confirmationTitle = 'Ok',
+      String? cancelTitle = 'Cancel'}) {
     _progressCompleter = Completer<ProgressResponse>();
     _showProgressListener(ProgressRequest(
-        title: title,
-        description: description,
-        buttonTitle: confirmationTitle,
-        cancelTitle: cancelTitle));
+        title: title!,
+        description: description!,
+        buttonTitle: confirmationTitle!,
+        cancelTitle: cancelTitle!));
     return _progressCompleter.future;
   }
 
   Future<ProgressResponse> loadingDialog({
-    String title,
-    String description,
-    String buttonTitle,
+    String title = "",
+    String description = "",
+    String buttonTitle = "",
   }) {
     _progressCompleter = Completer<ProgressResponse>();
     _showProgressListener(ProgressRequest(
@@ -62,7 +62,7 @@ class ProgressService {
 
   /// Completes the _dialogCompleter to resume the Future's execution call
   void dialogComplete(ProgressResponse response) {
-    _progressNavigationKey.currentState?.pop();
+    _progressNavigationKey.currentState!.pop();
     _progressCompleter.complete(response);
     // _progressCompleter. = null;
   }
